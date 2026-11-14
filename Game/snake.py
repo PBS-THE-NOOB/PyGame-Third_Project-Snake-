@@ -9,6 +9,7 @@ class SNAKE():
         self.right = Vector2(1,0)
         self.up = Vector2(0,-1)
         self.direction = self.right
+        self.delete = Vector2(7,3)
 
     def draw_snake(self):
         for i in self.position :
@@ -29,12 +30,28 @@ class SNAKE():
 
     def move_snake(self):
         self.movement_handeling()
-    
         head = self.position[0] + self.direction
         self.position.insert(0,head) 
-        self.position.pop()
+        self.delete = self.position.pop()
+        self.assign_pos()
 
+    def check_boundries(self) : 
+        head = self.position[0]
+        if head.x < 0 : return 'left'
+        elif  head.x >= SQUARE_NUMBER : return 'right'
+        if head.y < 0 : return 'up' 
+        elif head.y >= SQUARE_NUMBER : return 'down'
+        return None
 
-    def update(self):
-        pass
+    def assign_pos(self) :
+        off_boundry  = self.check_boundries()
+        if off_boundry == 'left' : 
+            self.position[0].x += SQUARE_NUMBER
+        elif off_boundry == 'right' :
+            self.position[0].x -= SQUARE_NUMBER
+        if off_boundry == 'up' : 
+            self.position[0].y += SQUARE_NUMBER
+        elif off_boundry == 'down' :
+            self.position[0].y -= SQUARE_NUMBER
+
         

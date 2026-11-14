@@ -19,3 +19,8 @@ class FRUIT():
     def draw_fruit(self):
         rect = self.get_fruit_rect()
         pygame.draw.rect(self.screen,RED,rect)
+
+    def relocalize_fruit(self):
+        self.x_pos = randint(0,SQUARE_NUMBER - 1)
+        self.y_pos = randint(0,SQUARE_NUMBER - 1)
+        self.vector = Vector2(self.x_pos,self.y_pos)

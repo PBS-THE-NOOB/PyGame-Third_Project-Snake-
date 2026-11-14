@@ -1,16 +1,13 @@
 import pygame,sys
 from settings.constants import SCREEN_SIZE,CHARCOAL
-from Game.fruit import FRUIT
-from Game.snake import SNAKE
-
+from Game.game_logic import GAME_LOGIC
 
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_SIZE,SCREEN_SIZE))
 pygame.display.set_caption('Snake_2D')
 clock = pygame.time.Clock()
 
-fruit = FRUIT(screen)
-snake = SNAKE(screen)
+Game_logic = GAME_LOGIC(screen)
 snake_move = pygame.USEREVENT + 1 
 pygame.time.set_timer(snake_move,250)
 run = True
@@ -24,20 +21,16 @@ while run:
         if event.type == pygame.QUIT :
             run = False 
         if event.type == snake_move :
-            snake.move_snake()
+            Game_logic.snake.move_snake()
 
     screen.fill(CHARCOAL)
 
-    # fruit 
-    fruit.draw_fruit()
-
-    #snake 
-    snake.draw_snake()
-    snake.update()
+    # Game logics 
+    Game_logic.fruit.draw_fruit()
+    Game_logic.snake.draw_snake()
+    Game_logic.update()
 
     pygame.display.update()
     clock.tick(60)
 
 game_quit()
-
-    
