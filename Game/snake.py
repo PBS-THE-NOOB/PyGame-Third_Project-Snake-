@@ -5,11 +5,11 @@ from settings.constants import SQUARE_WIDTH,SQUARE_NUMBER,GREEN
 class SNAKE():
     def __init__(self,screen):
         self.screen = screen
-        self.position = [Vector2(5,3),Vector2(6,3),Vector2(7,3)] #initial snake position
+        self.position = [Vector2(7,3),Vector2(6,3),Vector2(5,3)] #initial snake position
         self.right = Vector2(1,0)
         self.up = Vector2(0,-1)
         self.direction = self.right
-        self.delete = Vector2(7,3)
+        self.delete = Vector2(5,3)
 
     def draw_snake(self):
         for i in self.position :
@@ -54,4 +54,7 @@ class SNAKE():
         elif off_boundry == 'down' :
             self.position[0].y -= SQUARE_NUMBER
 
-        
+    def reset(self):
+        self.position = [Vector2(7,3),Vector2(6,3),Vector2(5,3)]
+        self.direction = self.right
+        self.delete = Vector2(5,3)

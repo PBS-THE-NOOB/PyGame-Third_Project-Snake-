@@ -12,25 +12,36 @@ snake_move = pygame.USEREVENT + 1
 pygame.time.set_timer(snake_move,250)
 run = True
 
+GAMEACTIVE = False
+
 def game_quit():
     pygame.quit()
     sys.exit()
 
-while run:
-    for event in pygame.event.get() :
-        if event.type == pygame.QUIT :
-            run = False 
-        if event.type == snake_move :
-            Game_logic.snake.move_snake()
+if __name__ == '__main__' :
 
-    screen.fill(CHARCOAL)
+    while run:
+        for event in pygame.event.get() :
+            if event.type == pygame.QUIT :
+                run = False 
+            if event.type == snake_move and GAMEACTIVE:
+                Game_logic.snake.move_snake()
+        if GAMEACTIVE :
+            screen.fill(CHARCOAL)
 
-    # Game logics 
-    Game_logic.fruit.draw_fruit()
-    Game_logic.snake.draw_snake()
-    Game_logic.update()
+            # Game logics 
+            Game_logic.fruit.draw_fruit()
+            Game_logic.snake.draw_snake()
+            Game_logic.update()
 
-    pygame.display.update()
-    clock.tick(60)
+            #Game Ending Logic
+            if Game_logic.check_self_collision():
+                GAMEACTIVE = False
+        else : 
+            Game_logic.reset()
+            GAMEACTIVE =  Game_logic.game_over()
 
-game_quit()
+        pygame.display.update()
+        clock.tick(60)
+
+    game_quit()

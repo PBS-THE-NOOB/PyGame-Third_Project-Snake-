@@ -24,3 +24,8 @@ class FRUIT():
         self.x_pos = randint(0,SQUARE_NUMBER - 1)
         self.y_pos = randint(0,SQUARE_NUMBER - 1)
         self.vector = Vector2(self.x_pos,self.y_pos)
+
+    def reset(self):
+        self.x_pos = randint(0,SQUARE_NUMBER - 1)
+        self.y_pos = randint(0,SQUARE_NUMBER - 1)
+        self.vector = Vector2(self.x_pos,self.y_pos)       
