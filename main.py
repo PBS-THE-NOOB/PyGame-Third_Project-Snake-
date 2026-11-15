@@ -12,7 +12,7 @@ snake_move = pygame.USEREVENT + 1
 pygame.time.set_timer(snake_move,250)
 run = True
 
-GAMEACTIVE = False
+GAMEACTIVE = True
 
 def game_quit():
     pygame.quit()
@@ -38,8 +38,8 @@ if __name__ == '__main__' :
             if Game_logic.check_self_collision():
                 GAMEACTIVE = False
         else : 
-            Game_logic.reset()
             GAMEACTIVE =  Game_logic.game_over()
+            
 
         pygame.display.update()
         clock.tick(60)

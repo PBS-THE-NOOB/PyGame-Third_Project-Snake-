@@ -41,7 +41,9 @@ class GAME_LOGIC() :
         
     def check_enter(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_RETURN] : return True
+        if keys[pygame.K_RETURN] :
+            self.reset()
+            return True
         return False
     
     def reset(self):
