@@ -9,6 +9,7 @@ class FRUIT():
         self.x_pos = randint(0,SQUARE_NUMBER - 1)
         self.y_pos = randint(0,SQUARE_NUMBER - 1)
         self.vector = Vector2(self.x_pos,self.y_pos)
+        self.fruit_img = pygame.transform.scale(pygame.image.load('Graphics/apple.png').convert_alpha(),(SQUARE_WIDTH,SQUARE_WIDTH))
 
     def get_fruit_rect(self):
         x_position = self.vector.x * SQUARE_WIDTH
@@ -18,7 +19,7 @@ class FRUIT():
     
     def draw_fruit(self):
         rect = self.get_fruit_rect()
-        pygame.draw.rect(self.screen,RED,rect)
+        self.screen.blit(self.fruit_img,rect)
 
     def relocalize_fruit(self):
         self.x_pos = randint(0,SQUARE_NUMBER - 1)
